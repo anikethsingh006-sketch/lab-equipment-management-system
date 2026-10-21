@@ -1,81 +1,119 @@
-import { equipmentData } from "../data/equipment";
+import { useEffect, useState } from "react";
+import { getEquipment } from "../services/equipmentApi";
 
-function getStatusClass(status) {
-  switch (status) {
-    case "Available":
-      return "available";
+const STATUS_LABELS = {
+  AVAILABLE: "Available",
+  BORROWED: "Issued",
+  MAINTENANCE: "Under Maintenance",
+  RETIRED: "Retired",
+};
 
-    case "Issued":
-      return "issued";
-
-    case "Under Maintenance":
-      return "maintenance";
-
-    case "Under Calibration":
-      return "calibration";
-
-    default:
-      return "retired";
-  }
-}
+const CONDITION_LABELS = {
+  EXCELLENT: "Excellent",
+  GOOD: "Good",
+  FAIR: "Fair",
+  DAMAGED: "Damaged",
+};
 
 export default function EquipmentTable() {
-  const recentEquipment = equipmentData.slice(0, 5);
+  const [equipment, setEquipment] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function fetchEquipment() {
+      try {
+        setError("");
+        const data = await getEquipment();
+        setEquipment(data);
+      } catch (err) {
+        setError(err.message || "Failed to load equipment.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchEquipment();
+  }, []);
+
+  // Show the 5 most recently registered records.
+  const recentEquipment = [...equipment]
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt || 0).getTime() -
+        new Date(a.createdAt || 0).getTime(),
+    )
+    .slice(0, 5);
 
   return (
-    <section className="panel equipment-panel">
+    <section className="panel">
       <div className="panel-header">
         <div>
           <h2>Recent Equipment</h2>
           <p>Overview of recently registered equipment</p>
         </div>
 
-        <a href="/equipment" className="view-all">
+        <button
+          type="button"
+          className="text-button"
+          onClick={() => {
+            window.location.href = "/equipment";
+          }}
+        >
           View all →
-        </a>
+        </button>
       </div>
 
-      <div className="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>ASSET ID</th>
-              <th>EQUIPMENT</th>
-              <th>LOCATION</th>
-              <th>STATUS</th>
-              <th>CONDITION</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {recentEquipment.map((equipment) => (
-              <tr key={equipment.id}>
-                <td className="asset-id">{equipment.id}</td>
-
-                <td>
-                  <div className="equipment-name">{equipment.name}</div>
-
-                  <div className="equipment-category">{equipment.category}</div>
-                </td>
-
-                <td>{equipment.location}</td>
-
-                <td>
-                  <span
-                    className={`status-badge ${getStatusClass(
-                      equipment.status,
-                    )}`}
-                  >
-                    {equipment.status}
-                  </span>
-                </td>
-
-                <td>{equipment.condition}</td>
+      {loading ? (
+        <p className="empty-state">Loading equipment...</p>
+      ) : error ? (
+        <p className="empty-state">{error}</p>
+      ) : (
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>SERIAL NUMBER</th>
+                <th>EQUIPMENT</th>
+                <th>LOCATION</th>
+                <th>STATUS</th>
+                <th>CONDITION</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+
+            <tbody>
+              {recentEquipment.map((item) => (
+                <tr key={item._id}>
+                  <td className="asset-id">{item.serialNumber}</td>
+
+                  <td>
+                    <div className="equipment-name">{item.name}</div>
+                    <div className="equipment-category">{item.category}</div>
+                  </td>
+
+                  <td>{item.location}</td>
+
+                  <td>
+                    <span className="status-badge">
+                      {STATUS_LABELS[item.status] || item.status}
+                    </span>
+                  </td>
+
+                  <td>{CONDITION_LABELS[item.condition] || item.condition}</td>
+                </tr>
+              ))}
+
+              {recentEquipment.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="empty-state">
+                    No equipment registered yet.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </section>
   );
 }
