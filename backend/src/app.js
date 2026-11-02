@@ -4,6 +4,8 @@ const cors = require("cors");
 const equipmentRoutes = require("./routes/equipmentRoutes");
 const maintenanceRoutes = require("./routes/maintenanceRoutes");
 const issueRoutes = require("./routes/issueRoutes");
+const reportRoutes = require("./routes/reportRoutes");
+
 const errorMiddleware = require("./middleware/errorMiddleware");
 
 const app = express();
@@ -23,7 +25,7 @@ app.get("/api/health", (req, res) => {
 app.use("/api/equipment", equipmentRoutes);
 app.use("/api/maintenance", maintenanceRoutes);
 app.use("/api/issue-return", issueRoutes);
-
+app.use("/api/reports", reportRoutes);
 // HANDLE UNKNOWN ROUTES
 app.use((req, res) => {
   res.status(404).json({
