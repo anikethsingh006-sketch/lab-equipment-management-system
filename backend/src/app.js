@@ -5,6 +5,7 @@ const equipmentRoutes = require("./routes/equipmentRoutes");
 const maintenanceRoutes = require("./routes/maintenanceRoutes");
 const issueRoutes = require("./routes/issueRoutes");
 const reportRoutes = require("./routes/reportRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const errorMiddleware = require("./middleware/errorMiddleware");
 
@@ -26,6 +27,8 @@ app.use("/api/equipment", equipmentRoutes);
 app.use("/api/maintenance", maintenanceRoutes);
 app.use("/api/issue-return", issueRoutes);
 app.use("/api/reports", reportRoutes);
+app.use("/api/users", userRoutes);
+
 // HANDLE UNKNOWN ROUTES
 app.use((req, res) => {
   res.status(404).json({
