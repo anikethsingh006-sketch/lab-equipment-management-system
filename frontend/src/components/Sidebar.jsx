@@ -5,7 +5,6 @@ const menuItems = [
   { name: "Equipment", path: "/equipment", icon: "▤" },
   { name: "Issue / Return", path: "/issue-return", icon: "⇄" },
   { name: "Maintenance", path: "/maintenance", icon: "⚙" },
-  { name: "Calibration", path: "/calibration", icon: "◷" },
   { name: "Reports", path: "/reports", icon: "▥" },
   { name: "User Management", path: "/users", icon: "♙" },
 ];

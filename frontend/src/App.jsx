@@ -3,6 +3,8 @@ import Dashboard from "./pages/Dashboard";
 import Equipment from "./pages/Equipment";
 import IssueReturn from "./pages/IssueReturn";
 import Maintenance from "./pages/Maintenance";
+import Reports from "./pages/Reports";
+import Users from "./pages/Users";
 
 function PlaceholderPage({ title }) {
   return (
@@ -26,17 +28,9 @@ export default function App() {
 
         <Route path="/maintenance" element={<Maintenance />} />
 
-        <Route
-          path="/calibration"
-          element={<PlaceholderPage title="Calibration" />}
-        />
+        <Route path="/reports" element={<Reports />} />
 
-        <Route path="/reports" element={<PlaceholderPage title="Reports" />} />
-
-        <Route
-          path="/users"
-          element={<PlaceholderPage title="User Management" />}
-        />
+        <Route path="/users" element={<Users />} />
 
         <Route path="*" element={<PlaceholderPage title="Page Not Found" />} />
       </Routes>

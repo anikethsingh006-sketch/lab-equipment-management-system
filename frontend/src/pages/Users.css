@@ -1,0 +1,276 @@
+.users-page {
+  padding: 28px;
+  color: #1e293b;
+}
+
+.users-header,
+.users-table-heading,
+.users-form-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.users-header {
+  margin-bottom: 24px;
+}
+
+.users-header h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+}
+
+.users-header p,
+.users-table-heading p {
+  margin: 0;
+  color: #64748b;
+}
+
+.users-add-btn,
+.users-submit-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 11px 16px;
+  background: #3159a8;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.users-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.users-stat-card,
+.users-section {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.users-stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.users-stat-card span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.users-stat-card strong {
+  font-size: 28px;
+}
+
+.users-section {
+  margin-bottom: 24px;
+}
+
+.users-section h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+}
+
+.users-form-heading {
+  margin-bottom: 20px;
+}
+
+.users-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.users-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.users-field label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.users-field input,
+.users-field select,
+.users-search {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+}
+
+.users-submit-btn {
+  justify-self: start;
+}
+
+.users-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.users-cancel-btn {
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 13px;
+  cursor: pointer;
+}
+
+.users-table-heading {
+  margin-bottom: 18px;
+}
+
+.users-search {
+  max-width: 280px;
+}
+
+.users-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.users-table th,
+.users-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.users-table th {
+  background: #f8fafc;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.users-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.users-edit-btn,
+.users-toggle-btn {
+  padding: 7px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.users-edit-btn {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.users-toggle-btn.deactivate {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.users-toggle-btn.activate {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.role-badge,
+.user-status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.role-badge.admin {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.role-badge.student {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.role-badge.lab_assistant {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.user-status.active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.user-status.inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.users-empty {
+  text-align: center;
+  padding: 30px !important;
+  color: #64748b;
+}
+
+.users-alert {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 18px;
+}
+
+.users-alert.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.users-alert.success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+@media (max-width: 900px) {
+  .users-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .users-page {
+    padding: 16px;
+  }
+
+  .users-header,
+  .users-table-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .users-stats,
+  .users-form {
+    grid-template-columns: 1fr;
+  }
+
+  .users-search {
+    max-width: none;
+  }
+}
