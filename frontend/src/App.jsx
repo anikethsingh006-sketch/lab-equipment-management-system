@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Equipment from "./pages/Equipment";
 import IssueReturn from "./pages/IssueReturn";
+import Maintenance from "./pages/Maintenance";
 
 function PlaceholderPage({ title }) {
   return (
@@ -23,10 +24,7 @@ export default function App() {
 
         <Route path="/issue-return" element={<IssueReturn />} />
 
-        <Route
-          path="/maintenance"
-          element={<PlaceholderPage title="Maintenance" />}
-        />
+        <Route path="/maintenance" element={<Maintenance />} />
 
         <Route
           path="/calibration"
