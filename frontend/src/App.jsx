@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Equipment from "./pages/Equipment";
+import IssueReturn from "./pages/IssueReturn";
 
 function PlaceholderPage({ title }) {
   return (
@@ -20,10 +21,7 @@ export default function App() {
 
         <Route path="/equipment" element={<Equipment />} />
 
-        <Route
-          path="/issue-return"
-          element={<PlaceholderPage title="Issue & Return" />}
-        />
+        <Route path="/issue-return" element={<IssueReturn />} />
 
         <Route
           path="/maintenance"
