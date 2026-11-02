@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const equipmentRoutes = require("./routes/equipmentRoutes");
 const maintenanceRoutes = require("./routes/maintenanceRoutes");
+const issueRoutes = require("./routes/issueRoutes");
 const errorMiddleware = require("./middleware/errorMiddleware");
 
 const app = express();
@@ -21,6 +22,7 @@ app.get("/api/health", (req, res) => {
 // API ROUTES
 app.use("/api/equipment", equipmentRoutes);
 app.use("/api/maintenance", maintenanceRoutes);
+app.use("/api/issue-return", issueRoutes);
 
 // HANDLE UNKNOWN ROUTES
 app.use((req, res) => {
