@@ -1,4 +1,5 @@
-const API_URL = `${import.meta.env.VITE_API_URL}/api/equipment`;
+const API_URL = `${import.meta.env.VITE_API_URL}/api/reports`;
+
 async function request(url) {
   const response = await fetch(url);
   const result = await response.json();

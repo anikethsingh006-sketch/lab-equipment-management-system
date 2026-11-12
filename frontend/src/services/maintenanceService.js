@@ -1,4 +1,4 @@
-const API_URL = `${import.meta.env.VITE_API_URL}/api/equipment`;
+const API_URL = `${import.meta.env.VITE_API_URL}/api/maintenance`;
 
 async function request(url, options = {}) {
   const response = await fetch(url, {
