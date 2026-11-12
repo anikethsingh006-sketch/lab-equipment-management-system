@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/maintenance";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/equipment`;
 
 async function request(url, options = {}) {
   const response = await fetch(url, {
